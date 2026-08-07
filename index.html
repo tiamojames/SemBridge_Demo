@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SemBridge: semantic-token anchoring for continuous-latent autoregressive speech generation.">
+  <title>SemBridge | Speech Generation Demo</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="SemBridge home">SemBridge</a>
+    <nav aria-label="Primary navigation">
+      <a href="#tts">TTS</a>
+      <a href="#svs">SVS</a>
+      <a href="#unified">Unified</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">Audio Demo</p>
+        <h1>SemBridge</h1>
+        <p class="hero-subtitle">Semantic-Token Anchoring for Continuous-Latent Autoregressive Speech Generation</p>
+        <div class="capability-list" aria-label="SemBridge capabilities">
+          <span>Zero-shot TTS</span>
+          <span>Score-conditioned SVS</span>
+          <span>Speech–singing generation</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="abstract-section" aria-labelledby="abstract-title">
+      <h2 id="abstract-title">Abstract</h2>
+      <p>
+        Continuous-latent autoregressive speech generation has emerged as a promising alternative to discrete-token modeling by avoiding quantization loss and preserving richer acoustic information. However, continuous acoustic targets do not expose linguistic structure as explicit token-level prediction targets. Consequently, the autoregressive language model (LM) must acquire linguistic structure indirectly through acoustic prediction, which can compromise the content fidelity of generated speech. We propose SemBridge, a training-only semantic-token anchoring framework for continuous-latent autoregressive speech generation. SemBridge uses discrete semantic tokens to directly supervise autoregressive LM states and employs a Semantic-Aligned Acoustic VAE to organize the continuous target space under the same semantic reference. The semantic supervision is used only during training, while inference remains entirely continuous. We evaluate SemBridge on zero-shot text-to-speech (TTS) and score-conditioned singing voice synthesis (SVS). Across multiple benchmarks, SemBridge improves content accuracy, as measured by word and character error rates (WER/CER), while maintaining competitive speaker similarity and perceptual quality. Experimental results demonstrate that explicit semantic-token supervision for autoregressive state learning is an effective and general direction for continuous speech generation.
+      </p>
+    </section>
+
+    <section id="tts" class="section">
+      <div class="section-heading">
+        <p class="section-index">01 / Audio</p>
+        <h2>Zero-shot text-to-speech</h2>
+        <p>Each sample conditions on a short reference recording and generates the target text in the prompt speaker's voice.</p>
+      </div>
+
+      <div class="sample-table" role="table" aria-label="Zero-shot TTS samples">
+        <div class="sample-row sample-header" role="row">
+          <div role="columnheader">Sample</div>
+          <div role="columnheader">Prompt</div>
+          <div role="columnheader">Target text</div>
+          <div role="columnheader">SemBridge</div>
+        </div>
+
+        <div class="sample-row" role="row">
+          <div class="sample-meta" role="cell"><strong>ZH · R001</strong><span>Standard</span></div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/prompts/TTS_ZH_R001.wav"></audio></div>
+          <div class="sample-text" role="cell" lang="zh">我箱子里有一套夏装，可是现在穿它也未免太不成体统了。</div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/outputs/TTS_ZH_R001.wav"></audio></div>
+        </div>
+
+        <div class="sample-row" role="row">
+          <div class="sample-meta" role="cell"><strong>ZH · R002</strong><span>Standard</span></div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/prompts/TTS_ZH_R002.wav"></audio></div>
+          <div class="sample-text" role="cell" lang="zh">即使拉斯维加斯的赌场，在奢华的程度上都很难媲美。</div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/outputs/TTS_ZH_R002.wav"></audio></div>
+        </div>
+
+        <div class="sample-row" role="row">
+          <div class="sample-meta" role="cell"><strong>EN · R001</strong><span>Standard</span></div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/prompts/TTS_EN_R001.wav"></audio></div>
+          <div class="sample-text" role="cell">Reading between the lines requires understanding.</div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/outputs/TTS_EN_R001.wav"></audio></div>
+        </div>
+
+        <div class="sample-row" role="row">
+          <div class="sample-meta" role="cell"><strong>EN · R002</strong><span>Standard</span></div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/prompts/TTS_EN_R002.wav"></audio></div>
+          <div class="sample-text" role="cell">At least five species of reptiles have been recorded for the island.</div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/outputs/TTS_EN_R002.wav"></audio></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="svs" class="section section-tinted">
+      <div class="section-heading">
+        <p class="section-index">02 / Audio</p>
+        <h2>Score-conditioned singing voice synthesis</h2>
+        <p>SemBridge generates singing from lyrics, MIDI pitch, note duration, and a short singer prompt.</p>
+      </div>
+
+      <div class="sample-table" role="table" aria-label="Score-conditioned SVS samples">
+        <div class="sample-row sample-header" role="row">
+          <div role="columnheader">Sample</div>
+          <div role="columnheader">Prompt</div>
+          <div role="columnheader">Lyrics</div>
+          <div role="columnheader">SemBridge</div>
+        </div>
+
+        <div class="sample-row" role="row">
+          <div class="sample-meta" role="cell"><strong>ZH · R001</strong><span>Standard</span></div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/prompts/SVS_ZH_R001.wav"></audio></div>
+          <div class="sample-text" role="cell" lang="zh">像我这样庸俗的人从不喜欢装深沉</div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/outputs/SVS_ZH_R001.wav"></audio></div>
+        </div>
+
+        <div class="sample-row" role="row">
+          <div class="sample-meta" role="cell"><strong>ZH · R002</strong><span>Standard</span></div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/prompts/SVS_ZH_R002.wav"></audio></div>
+          <div class="sample-text" role="cell" lang="zh">在我的怀里你不用害怕失眠</div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/outputs/SVS_ZH_R002.wav"></audio></div>
+        </div>
+
+        <div class="sample-row" role="row">
+          <div class="sample-meta" role="cell"><strong>EN · R001</strong><span>Standard</span></div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/prompts/SVS_EN_R001.wav"></audio></div>
+          <div class="sample-text" role="cell">How I wondered where they'd gone, but they're back again, just like a long lost friend, all the songs I loved so well.</div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/outputs/SVS_EN_R001.wav"></audio></div>
+        </div>
+
+        <div class="sample-row" role="row">
+          <div class="sample-meta" role="cell"><strong>EN · R002</strong><span>Standard</span></div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/prompts/SVS_EN_R002.wav"></audio></div>
+          <div class="sample-text" role="cell">When he's long gone and he's next to me.</div>
+          <div role="cell"><audio controls preload="none" src="audio/sembridge/outputs/SVS_EN_R002.wav"></audio></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="unified" class="section">
+      <div class="section-heading">
+        <p class="section-index">03 / Audio</p>
+        <h2>Unified speech–singing generation</h2>
+        <p>A single autoregressive sequence alternates between speech and score-conditioned singing while preserving a shared acoustic trajectory.</p>
+      </div>
+
+      <div class="unified-sequence" aria-label="Unified sequence structure">
+        <div class="segment speech"><span>Speech</span><p lang="zh">大家注定要听到一个关于涨薪水的好消息了，克拉克显得十分兴奋。</p></div>
+        <div class="sequence-arrow" aria-hidden="true">→</div>
+        <div class="segment singing"><span>Singing</span><p lang="zh">谁谋杀了我的浪漫</p></div>
+        <div class="sequence-arrow" aria-hidden="true">→</div>
+        <div class="segment speech"><span>Speech</span><p lang="zh">特别是有人散发了东南农。</p></div>
+      </div>
+
+      <div class="unified-audio">
+        <div><span>Prompt</span><audio controls preload="none" src="audio/unified/prompt.wav"></audio></div>
+        <div><span>SemBridge</span><audio controls preload="none" src="audio/unified/generated.wav"></audio></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>SemBridge</strong>
+    <span>Continuous-latent speech generation with training-only semantic-token anchoring.</span>
+  </footer>
+
+  <script src="js/audio.js"></script>
+</body>
+</html>
