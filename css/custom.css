@@ -193,6 +193,21 @@ nav a:focus-visible {
   font-size: 0.9rem;
 }
 
+.voice-language-heading {
+  margin: 1.35rem 0 0.55rem;
+}
+
+.voice-language-heading h4 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.sample-table + .voice-language-heading {
+  margin-top: 2rem;
+}
+
 .sample-table {
   width: 100%;
   overflow: hidden;
