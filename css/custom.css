@@ -256,6 +256,27 @@ audio {
   height: 40px;
 }
 
+.unified-example {
+  padding: 2rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.section-heading + .unified-example {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.unified-example h3 {
+  margin: 0 0 0.85rem;
+  font-size: 1rem;
+}
+
+.unified-example h3 span {
+  margin-left: 0.45rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
 .unified-sequence {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) auto minmax(0, 0.8fr) auto minmax(0, 0.9fr);
