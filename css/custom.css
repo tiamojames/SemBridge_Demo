@@ -146,38 +146,17 @@ nav a:focus-visible {
   line-height: 1.75;
 }
 
-.architecture-section {
-  padding: 3.6rem max(5vw, calc((100vw - var(--max-width)) / 2));
-  background: #eef3f6;
-  border-bottom: 1px solid var(--line);
+.abstract-architecture {
+  width: 100%;
+  max-width: 1040px;
+  margin: 2rem auto 0;
 }
 
-.architecture-inner {
-  width: min(100%, var(--max-width));
-  margin: 0 auto;
-}
-
-.architecture-inner h2 {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 500;
-  line-height: 1.1;
-}
-
-.architecture-figure {
-  margin: 1.5rem 0 0;
-  overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: #fff;
-}
-
-.architecture-figure a {
+.abstract-architecture a {
   display: block;
 }
 
-.architecture-figure img {
+.abstract-architecture img {
   display: block;
   width: 100%;
   height: auto;
@@ -461,15 +440,6 @@ footer strong {
 
   .abstract-section {
     padding: 2.5rem 1.25rem;
-  }
-
-  .architecture-section {
-    padding: 3rem 1.25rem;
-  }
-
-  .architecture-figure img {
-    width: 760px;
-    max-width: none;
   }
 
   .unified-audio {
