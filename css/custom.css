@@ -176,6 +176,23 @@ nav a:focus-visible {
   font-size: 0.98rem;
 }
 
+.sample-subsection {
+  margin: 2.6rem 0 1rem;
+}
+
+.sample-subsection h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.65rem;
+  font-weight: 500;
+}
+
+.sample-subsection p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .sample-table {
   width: 100%;
   overflow: hidden;
