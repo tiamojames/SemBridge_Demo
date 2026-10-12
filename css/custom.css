@@ -172,13 +172,13 @@ audio { width: 100%; height: 36px; display: block; margin: 8px 0; }
 .unified-audio > div > span { font-size: 11px; color: var(--muted); }
 .enhanced .unified-audio > div > span { display: none; }
 .unified-audio .audio-player[data-kind="generated"] { --audio-color: var(--blue); }
-.citation-section { display: grid; grid-template-columns: .85fr 1.3fr; gap: 70px; padding: 80px var(--gutter); background: #edf2ec; border-top: 1px solid var(--line); }
+.citation-section { display: grid; grid-template-columns: .8fr 1.35fr; gap: 70px; padding: 80px var(--gutter); background: #edf2ec; border-top: 1px solid var(--line); }
 .citation-heading h2 { font-size: 36px; max-width: 350px; }
 .citation-heading a { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; color: var(--green); }
 .citation-heading a svg { width: 14px; }
 .citation-code { min-width: 0; }
 .citation-label { display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid #ced8cd; font: 11px ui-monospace, monospace; color: var(--muted); }
-.citation-code pre { font: 11px/1.9 ui-monospace, SFMono-Regular, Consolas, monospace; color: #49594e; overflow-wrap: anywhere; white-space: pre-wrap; margin: 16px 0 0; }
+.citation-code pre { font: 11px/1.9 ui-monospace, SFMono-Regular, Consolas, monospace; color: #49594e; white-space: pre; overflow-x: auto; scrollbar-width: thin; padding-bottom: 12px; margin: 16px 0 0; }
 .icon-button { display: inline-grid; place-items: center; flex-shrink: 0; padding: 0; border: 0; border-radius: 4px; width: 36px; height: 36px; background: transparent; color: inherit; cursor: pointer; }
 .icon-button svg { width: 17px; height: 17px; }
 .icon-button:hover { background: rgb(128 151 133 / 15%); }
