@@ -1,2 +1,4 @@
 audio/sembridge/references/
 audio/unified/reference.wav
+node_modules/
+__pycache__/

@@ -4,61 +4,100 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="SemBridge: semantic-token anchoring for continuous-latent autoregressive speech generation.">
-  <title>SemBridge | Speech Generation Demo</title>
+  <meta name="theme-color" content="#15251f">
+  <meta property="og:title" content="SemBridge | Speech. Singing. One continuous voice.">
+  <meta property="og:description" content="Explore zero-shot speech, expressive voices, score-conditioned singing, and unified speech-singing generation.">
+  <meta property="og:image" content="https://tiamojames.github.io/SemBridge_Demo/asset/sembridge.png">
+  <title>SemBridge | Speech &amp; Singing</title>
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/custom.css">
 </head>
 
 <body>
+  <a class="skip-link" href="#tts">Skip to audio samples</a>
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="SemBridge home">SemBridge</a>
+    <a class="brand" href="#top" aria-label="SemBridge home"><i data-lucide="audio-lines" aria-hidden="true"></i>SemBridge<span class="brand-dot"></span></a>
     <nav aria-label="Primary navigation">
-      <a href="#tts">TTS</a>
-      <a href="#svs">SVS</a>
+      <a href="#overview">Overview</a>
+      <a href="#tts">Speech</a>
+      <a href="#svs">Singing</a>
       <a href="#unified">Unified</a>
+      <a href="#citation">Citation</a>
     </nav>
+    <a class="header-paper" href="https://arxiv.org/pdf/2608.07462" target="_blank" rel="noopener">Read the paper<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+    <div class="reading-progress" aria-hidden="true"></div>
   </header>
 
   <main id="top">
     <section class="hero">
+      <canvas id="hero-wave" aria-hidden="true"></canvas>
       <div class="hero-inner">
-        <p class="eyebrow">Audio Demo</p>
+        <p class="eyebrow"><span class="status-dot"></span> ASLP @ NPU <span class="eyebrow-divider">/</span> Soul AI Lab</p>
         <h1>SemBridge</h1>
-        <p class="hero-subtitle">Semantic-Token Anchoring for Continuous-Latent Autoregressive Speech Generation</p>
-        <div class="capability-list" aria-label="SemBridge capabilities">
-          <span>Zero-shot TTS</span>
-          <span>Score-conditioned SVS</span>
-          <span>Speech–singing generation</span>
+        <p class="hero-subtitle">Semantic-Token Anchoring for<br>Continuous-Latent Autoregressive Speech Generation</p>
+        <p class="hero-line">Speech. Singing. One continuous voice.</p>
+        <div class="resource-links">
+          <a class="resource-link primary" href="https://arxiv.org/pdf/2608.07462" target="_blank" rel="noopener"><i data-lucide="file-text" aria-hidden="true"></i> Paper<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+          <a class="resource-link" href="https://github.com/ASLP-lab/SemBridge" target="_blank" rel="noopener"><i data-lucide="github" aria-hidden="true"></i> Code<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+          <a class="resource-link" href="https://huggingface.co/ASLP-lab/SemBridge" target="_blank" rel="noopener"><i data-lucide="box" aria-hidden="true"></i> Model<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
         </div>
       </div>
+      <div class="hero-listen" hidden>
+        <div class="hero-listen-heading"><span class="eyebrow">A first listen</span><div class="hero-modes" role="tablist" aria-label="Featured audio">
+          <button id="feature-speech" role="tab" aria-controls="featured-panel" aria-selected="true" data-feature="speech">Speech</button>
+          <button id="feature-singing" role="tab" aria-controls="featured-panel" aria-selected="false" tabindex="-1" data-feature="singing">Singing</button>
+          <button id="feature-unified" role="tab" aria-controls="featured-panel" aria-selected="false" tabindex="-1" data-feature="unified">Unified</button>
+        </div></div>
+        <div id="featured-panel" role="tabpanel" aria-labelledby="feature-speech"><p id="featured-text" lang="zh">太好了，我们终于成功了！今晚一定要好好庆祝一下！</p><audio id="featured-audio" preload="none" src="audio/emotion/outputs/db6_happy_1.wav" controls></audio></div>
+      </div>
+      <a class="hero-scroll" href="#overview"><span>Explore SemBridge</span><i data-lucide="arrow-down" aria-hidden="true"></i></a>
     </section>
 
-    <section class="abstract-section" aria-labelledby="abstract-title">
-      <h2 id="abstract-title">Abstract</h2>
-      <p>
+    <div class="chapter-strip" aria-label="Generation tasks">
+      <a href="#tts"><span class="chapter-number">01</span><i data-lucide="mic" aria-hidden="true"></i><span>Zero-shot speech</span><i data-lucide="arrow-down-right" aria-hidden="true"></i></a>
+      <a href="#svs"><span class="chapter-number">02</span><i data-lucide="music-2" aria-hidden="true"></i><span>Score to singing</span><i data-lucide="arrow-down-right" aria-hidden="true"></i></a>
+      <a href="#unified"><span class="chapter-number">03</span><i data-lucide="waves" aria-hidden="true"></i><span>Speech &amp; singing</span><i data-lucide="arrow-down-right" aria-hidden="true"></i></a>
+    </div>
+
+    <section id="overview" class="abstract-section" aria-labelledby="abstract-title">
+      <div class="overview-heading reveal"><div><p class="section-index">The framework</p><h2 id="abstract-title">Semantics as an anchor.<br>Sound as a continuum.</h2></div><p class="overview-intro">SemBridge brings explicit semantic supervision to continuous-latent speech generation. Semantic tokens guide learning; inference generates entirely continuous acoustic latents.</p></div>
+      <details class="abstract-details"><summary>Abstract<i data-lucide="plus" aria-hidden="true"></i></summary><p>
         Continuous-latent autoregressive speech generation has emerged as a promising alternative to discrete-token modeling by avoiding quantization loss and preserving richer acoustic information. However, continuous acoustic targets do not expose linguistic structure as explicit token-level prediction targets. Consequently, the autoregressive language model (LM) must acquire linguistic structure indirectly through acoustic prediction, which can compromise the content fidelity of generated speech. We propose SemBridge, a training-only semantic-token anchoring framework for continuous-latent autoregressive speech generation. SemBridge uses discrete semantic tokens to directly supervise autoregressive LM states and employs a Semantic-Aligned Acoustic VAE to organize the continuous target space under the same semantic reference. The semantic supervision is used only during training, while inference remains entirely continuous. We evaluate SemBridge on zero-shot text-to-speech (TTS) and score-conditioned singing voice synthesis (SVS). Across multiple benchmarks, SemBridge improves content accuracy, as measured by word and character error rates (WER/CER), while maintaining competitive speaker similarity and perceptual quality. Experimental results demonstrate that explicit semantic-token supervision for autoregressive state learning is an effective and general direction for continuous speech generation.
-      </p>
-      <!-- <figure class="abstract-architecture">
-        <a href="asset/sembridge.png" target="_blank" rel="noopener">
+      </p></details>
+      <figure class="abstract-architecture reveal">
+        <a class="architecture-link" href="asset/sembridge.png" target="_blank" rel="noopener" aria-label="Enlarge SemBridge model architecture">
           <img
             src="asset/sembridge.png"
             alt="SemBridge model architecture with a semantic-aligned acoustic latent tokenizer and decoder-only Transformer for next acoustic-latent prediction"
             width="1260"
             height="445"
-            loading="lazy"
+            loading="lazy" decoding="async"
           >
+          <span class="figure-expand"><i data-lucide="expand" aria-hidden="true"></i></span>
         </a>
-      </figure> -->
+        <figcaption><span>01 / Model architecture</span>Semantic-aligned acoustic representations and semantic-token anchoring share a continuous generation pathway.</figcaption>
+      </figure>
+      <div class="method-notes reveal"><div><span>01</span><h3>Align the acoustics</h3><p>SA-VAE aligns acoustic latents with a shared semantic reference.</p></div><div><span>02</span><h3>Anchor the hidden states</h3><p>Discrete semantic labels supervise the autoregressive model during training.</p></div><div><span>03</span><h3>Keep generation continuous</h3><p>Speech and singing emerge as a sequence of continuous acoustic patches.</p></div></div>
     </section>
 
     <section id="tts" class="section">
-      <div class="section-heading">
-        <p class="section-index">01 / Audio</p>
-        <h2>Zero-shot text-to-speech</h2>
+      <div class="section-heading reveal">
+        <p class="section-index">01 / Speech</p>
+        <h2>A voice. A world of expression.</h2>
         <p>Each sample conditions on a short reference recording and generates the target text in the prompt speaker's voice.</p>
       </div>
 
-      <div class="sample-table" role="table" aria-label="Zero-shot TTS samples">
+      <div class="sample-toolbar" hidden>
+        <div class="sample-tabs" role="tablist" aria-label="Speech sample collection">
+          <button id="tab-standard" role="tab" aria-controls="speech-samples" aria-selected="true" data-category="standard">Zero-shot</button>
+          <button id="tab-expressive" role="tab" aria-controls="speech-samples" aria-selected="false" tabindex="-1" data-category="expressive">Expressive</button>
+          <button id="tab-character" role="tab" aria-controls="speech-samples" aria-selected="false" tabindex="-1" data-category="character">Character voices</button>
+          <button id="tab-narrative" role="tab" aria-controls="speech-samples" aria-selected="false" tabindex="-1" data-category="narrative">Narration</button>
+        </div>
+        <label class="language-filter"><i data-lucide="languages" aria-hidden="true"></i><select id="speech-language" aria-label="Speech language"><option value="all">All languages</option><option value="ZH">Chinese</option><option value="EN">English</option></select><i data-lucide="chevron-down" aria-hidden="true"></i></label>
+      </div>
+      <div id="speech-samples" role="tabpanel" aria-labelledby="tab-standard">
+      <div class="sample-table" role="table" aria-label="Zero-shot TTS samples" data-collection="standard">
         <div class="sample-row sample-header" role="row">
           <div role="columnheader">Sample</div>
           <div role="columnheader">Prompt</div>
@@ -100,7 +139,7 @@
         <p>Emotion-rich prompts transfer speaking style while preserving the requested content.</p>
       </div>
 
-      <div class="sample-table" role="table" aria-label="Expressive TTS samples">
+      <div class="sample-table" role="table" aria-label="Expressive TTS samples" data-collection="expressive">
         <div class="sample-row sample-header" role="row">
           <div role="columnheader">Sample</div>
           <div role="columnheader">Prompt</div>
@@ -160,7 +199,7 @@
         <h4>Chinese</h4>
       </div>
 
-      <div class="sample-table" role="table" aria-label="Chinese character and celebrity TTS samples">
+      <div class="sample-table" role="table" aria-label="Chinese character and celebrity TTS samples" data-collection="character">
         <div class="sample-row sample-header" role="row">
           <div role="columnheader">Voice</div>
           <div role="columnheader">Prompt</div>
@@ -244,7 +283,7 @@
         <h4>English</h4>
       </div>
 
-      <div class="sample-table" role="table" aria-label="English character and celebrity TTS samples">
+      <div class="sample-table" role="table" aria-label="English character and celebrity TTS samples" data-collection="character">
         <div class="sample-row sample-header" role="row">
           <div role="columnheader">Voice</div>
           <div role="columnheader">Prompt</div>
@@ -290,7 +329,7 @@
         <h4>Chinese</h4>
       </div>
 
-      <div class="sample-table" role="table" aria-label="Chinese narrative TTS samples">
+      <div class="sample-table" role="table" aria-label="Chinese narrative TTS samples" data-collection="narrative">
         <div class="sample-row sample-header" role="row">
           <div role="columnheader">Voice</div>
           <div role="columnheader">Prompt</div>
@@ -333,12 +372,14 @@
           <div role="cell"><audio controls preload="none" src="audio/voices/outputs/zhaozhongxiang.wav"></audio></div>
         </div>
       </div>
+      <p id="empty-samples" class="empty-samples" hidden>No samples in this language.</p>
+      </div>
     </section>
 
     <section id="svs" class="section section-tinted">
-      <div class="section-heading">
-        <p class="section-index">02 / Audio</p>
-        <h2>Score-conditioned singing voice synthesis</h2>
+      <div class="section-heading reveal">
+        <p class="section-index">02 / Singing</p>
+        <h2>Give the words a melody.</h2>
         <p>SemBridge generates singing from lyrics, MIDI pitch, note duration, and a short singer prompt.</p>
       </div>
 
@@ -381,12 +422,13 @@
     </section>
 
     <section id="unified" class="section">
-      <div class="section-heading">
-        <p class="section-index">03 / Audio</p>
-        <h2>Unified speech–singing generation</h2>
+      <div class="section-heading reveal">
+        <p class="section-index">03 / Unified</p>
+        <h2>From speaking to singing.<br>And back again.</h2>
         <p>A single autoregressive sequence alternates between speech and score-conditioned singing while preserving a shared acoustic trajectory.</p>
       </div>
 
+      <div class="unified-grid">
       <div class="unified-example">
         <h3>ZH · U001 <span>《像我这样的人》</span></h3>
         <div class="unified-sequence" aria-label="Speech, singing, then speech sequence">
@@ -446,14 +488,39 @@
           <div><span>SemBridge</span><audio controls preload="none" src="audio/unified/unified_zh_novel_wukong/generated.wav"></audio></div>
         </div>
       </div>
+      </div>
+    </section>
+
+    <section id="citation" class="citation-section">
+      <div class="citation-heading reveal"><p class="section-index">Build on SemBridge</p><h2>Keep the research moving.</h2><a href="https://arxiv.org/pdf/2608.07462" target="_blank" rel="noopener">arXiv:2608.07462<i data-lucide="arrow-up-right" aria-hidden="true"></i></a></div>
+      <div class="citation-code"><div class="citation-label"><span>BibTeX</span><button id="copy-citation" class="icon-button" aria-label="Copy BibTeX" title="Copy BibTeX" hidden><i data-lucide="copy" aria-hidden="true"></i></button></div><pre><code id="bibtex">@misc{xie2026sembridge,
+  title = {SemBridge: Semantic Token Anchoring for
+           Continuous-Latent Autoregressive Speech Generation},
+  author = {Hanke Xie and Haopeng Lin and Jiale Qian and
+            Dake Guo and Yuepeng Jiang and Zhichao Wang and
+            Wenxiao Cao and Jingbin Hu and Guobin Ma and
+            Wenhao Li and Huakang Chen and Chengyou Wang and
+            Ming Tao and Zhonghua Fu and Lei Xie and Xinsheng Wang},
+  year = {2026},
+  eprint = {2608.07462},
+  archivePrefix = {arXiv},
+  primaryClass = {eess.AS},
+  url = {https://arxiv.org/abs/2608.07462}
+}</code></pre></div>
     </section>
   </main>
 
   <footer>
-    <strong>SemBridge</strong>
-    <span>Continuous-latent speech generation with training-only semantic-token anchoring.</span>
+    <div><a class="brand" href="#top"><i data-lucide="audio-lines" aria-hidden="true"></i>SemBridge</a><p>ASLP @ NPU &amp; Soul AI Lab</p></div>
+    <div class="footer-links"><a href="https://arxiv.org/pdf/2608.07462" target="_blank" rel="noopener">Paper</a><a href="https://github.com/ASLP-lab/SemBridge" target="_blank" rel="noopener">Code</a><a href="https://huggingface.co/ASLP-lab/SemBridge" target="_blank" rel="noopener">Model</a><a href="#top" class="icon-button" aria-label="Back to top" title="Back to top"><i data-lucide="arrow-up" aria-hidden="true"></i></a></div>
   </footer>
 
+  <div id="player-dock" class="player-dock" hidden><div class="dock-track"><i data-lucide="audio-lines" aria-hidden="true"></i><div><strong id="dock-title"></strong><span id="dock-subtitle"></span></div></div><button id="dock-toggle" class="icon-button" aria-label="Pause audio" title="Pause audio"><i data-lucide="pause" aria-hidden="true"></i></button><input id="dock-seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Seek current audio"><span id="dock-time">0:00</span><button id="dock-mute" class="icon-button" aria-label="Mute audio" title="Mute audio"><i data-lucide="volume-2" aria-hidden="true"></i></button><a id="dock-download" class="icon-button" download aria-label="Download audio" title="Download audio"><i data-lucide="download" aria-hidden="true"></i></a><button id="dock-close" class="icon-button" aria-label="Stop and close player" title="Stop and close player"><i data-lucide="x" aria-hidden="true"></i></button></div>
+  <dialog id="architecture-dialog" aria-label="SemBridge model architecture"><button class="icon-button dialog-close" aria-label="Close model architecture" title="Close" autofocus><i data-lucide="x" aria-hidden="true"></i></button><img src="asset/sembridge.png" width="1260" height="445" alt="Enlarged SemBridge model architecture"><a href="asset/sembridge.png" target="_blank" rel="noopener">Open original figure<i data-lucide="arrow-up-right" aria-hidden="true"></i></a></dialog>
+  <div id="page-status" class="sr-only" role="status" aria-live="polite"></div>
+  <script src="js/icons.js"></script>
+  <script src="js/audio-data.js"></script>
   <script src="js/audio.js"></script>
+  <script src="js/site.js"></script>
 </body>
 </html>
