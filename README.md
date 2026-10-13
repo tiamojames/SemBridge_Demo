@@ -14,7 +14,7 @@ or CDN scripts are required.
 - `css/custom.css`: responsive layout and reduced-motion styles.
 - `js/audio.js`: waveform players and the shared playback dock.
 - `js/site.js`: tabs, navigation, figure dialog, and scroll reveals.
-- `asset/sembridge.png`: the original model architecture figure.
+- `asset/sembridge_model.png`: the high-resolution model architecture figure.
 
 The page preserves 37 examples and their 74 original prompt/output WAVs.
 Featured players reuse these assets. Only one audio plays at a time; playback

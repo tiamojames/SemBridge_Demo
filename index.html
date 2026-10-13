@@ -78,12 +78,12 @@
         Continuous-latent autoregressive speech generation has emerged as a promising alternative to discrete-token modeling by avoiding quantization loss and preserving richer acoustic information. However, continuous acoustic targets do not expose linguistic structure as explicit token-level prediction targets. Consequently, the autoregressive language model (LM) must acquire linguistic structure indirectly through acoustic prediction, which can compromise the content fidelity of generated speech. We propose SemBridge, a training-only semantic-token anchoring framework for continuous-latent autoregressive speech generation. SemBridge uses discrete semantic tokens to directly supervise autoregressive LM states and employs a Semantic-Aligned Acoustic VAE to organize the continuous target space under the same semantic reference. The semantic supervision is used only during training, while inference remains entirely continuous. We evaluate SemBridge on zero-shot text-to-speech (TTS) and score-conditioned singing voice synthesis (SVS). Across multiple benchmarks, SemBridge improves content accuracy, as measured by word and character error rates (WER/CER), while maintaining competitive speaker similarity and perceptual quality. Experimental results demonstrate that explicit semantic-token supervision for autoregressive state learning is an effective and general direction for continuous speech generation.
       </p></details>
       <figure class="abstract-architecture reveal">
-        <a class="architecture-link" href="asset/sembridge.png" target="_blank" rel="noopener" aria-label="Enlarge SemBridge model architecture">
+        <a class="architecture-link" href="asset/sembridge_model.png" target="_blank" rel="noopener" aria-label="Enlarge SemBridge model architecture">
           <img
-            src="asset/sembridge.png"
+            src="asset/sembridge_model.png"
             alt="SemBridge model architecture with a semantic-aligned acoustic latent tokenizer and decoder-only Transformer for next acoustic-latent prediction"
-            width="1260"
-            height="445"
+            width="3780"
+            height="1338"
             loading="lazy" decoding="async"
           >
           <span class="figure-expand"><i data-lucide="expand" aria-hidden="true"></i></span>
@@ -529,7 +529,7 @@
   </footer>
 
   <div id="player-dock" class="player-dock" hidden><div class="dock-track"><i data-lucide="audio-lines" aria-hidden="true"></i><div><strong id="dock-title"></strong><span id="dock-subtitle"></span></div></div><button id="dock-toggle" class="icon-button" aria-label="Pause audio" title="Pause audio"><i data-lucide="pause" aria-hidden="true"></i></button><input id="dock-seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Seek current audio"><span id="dock-time">0:00</span><button id="dock-mute" class="icon-button" aria-label="Mute audio" title="Mute audio"><i data-lucide="volume-2" aria-hidden="true"></i></button><a id="dock-download" class="icon-button" download aria-label="Download audio" title="Download audio"><i data-lucide="download" aria-hidden="true"></i></a><button id="dock-close" class="icon-button" aria-label="Stop and close player" title="Stop and close player"><i data-lucide="x" aria-hidden="true"></i></button></div>
-  <dialog id="architecture-dialog" aria-label="SemBridge model architecture"><button class="icon-button dialog-close" aria-label="Close model architecture" title="Close" autofocus><i data-lucide="x" aria-hidden="true"></i></button><img src="asset/sembridge.png" width="1260" height="445" alt="Enlarged SemBridge model architecture"><a href="asset/sembridge.png" target="_blank" rel="noopener">Open original figure<i data-lucide="arrow-up-right" aria-hidden="true"></i></a></dialog>
+  <dialog id="architecture-dialog" aria-label="SemBridge model architecture"><button class="icon-button dialog-close" aria-label="Close model architecture" title="Close" autofocus><i data-lucide="x" aria-hidden="true"></i></button><img src="asset/sembridge_model.png" width="3780" height="1338" alt="Enlarged SemBridge model architecture"><a href="asset/sembridge_model.png" target="_blank" rel="noopener">Open original figure<i data-lucide="arrow-up-right" aria-hidden="true"></i></a></dialog>
   <div id="page-status" class="sr-only" role="status" aria-live="polite"></div>
   <script src="js/icons.js"></script>
   <script src="js/audio-data.js"></script>
