@@ -28,7 +28,7 @@ h2 { font-size: 42px; font-weight: 550; line-height: 1.2; }
 .site-header { position: sticky; top: 0; height: 72px; z-index: 30; display: flex; gap: 32px; align-items: center; justify-content: space-between; padding: 0 var(--gutter); background: rgb(255 255 255 / 94%); border-bottom: 1px solid var(--line); backdrop-filter: blur(16px); }
 .brand { display: inline-flex; align-items: center; gap: 9px; font-size: 19px; font-weight: 750; white-space: nowrap; }
 .brand svg { color: var(--green); width: 25px; height: 25px; }
-.site-header .brand img { display: block; flex-shrink: 0; width: 48px; height: 28px; object-fit: cover; }
+.site-header .brand img { display: block; flex-shrink: 0; width: 48px; height: 28px; object-fit: contain; }
 .brand-dot { align-self: flex-end; width: 5px; height: 5px; margin: 0 0 9px -7px; background: var(--coral); border-radius: 50%; }
 nav { display: flex; gap: 28px; height: 100%; align-items: stretch; }
 nav a { position: relative; display: flex; align-items: center; font-size: 13px; font-weight: 550; color: var(--muted); }
